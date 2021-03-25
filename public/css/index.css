@@ -1,0 +1,23 @@
+body{
+    background-color: blue;
+}
+.blogs{
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 6px 0px, rgb(218,220,224) 0px -1px 0px 0px inset;
+}
+.blog-pic{
+    margin: 30px auto 30px;
+}
+.blog-post-title{
+    margin: 30px auto;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.blog-post-desc{
+    margin: 20px auto;
+    font-family: 'Noto Sans', sans-serif;
+}
+.blog-post{
+    margin: 30px auto;
+    font-family: 'Noto Sans', sans-serif;
+}
