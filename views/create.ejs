@@ -38,25 +38,26 @@
       <!-- Form for blog post -->
         <center>
           <form action="/" method="post">
+
+            <br>
+          
             <h1>Create a new Blog</h1>
             <br><br>
-            <!-- <input class="head" type="text" name="title" placeholder="Blog Title" required> -->
-            <textarea name="title" id="heading" placeholder="Give Heading for the Blog" required></textarea>
-            <br><br><br>
 
-            <textarea name="description" id="blog-description" placeholder="Write a brief description of the blog" required></textarea>
-
+            <button class="btn btn-warning">Save</button>
             <br><br><br>
 
             <textarea name="body" id="content" cols="100" rows="80" placeholder="Write a brief description of the blog" required></textarea>
 
             <br><br>
 
-            <button class="btn btn-warning">Submit</button>
-
-            <br><br>
           </form>
         </center>
+
+        <script src="ckeditor/ckeditor.js"></script>
+        <script>
+          CKEDITOR.replace("body");
+        </script>
     
 </body>
 </html>

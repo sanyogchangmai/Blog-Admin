@@ -40,23 +40,21 @@
           <form action="/<%= blog._id %>" method="post">
             <h1>Edit the Blog</h1>
             <br><br>
-            <!-- <input class="head" type="text" name="title" placeholder="Blog Title" required> -->
-            <textarea name="title" id="heading" cols="100" rows="2" required><%= blog.title %></textarea>
-            <br><br><br>
 
-            <textarea name="description" id="blog-description" cols="100" rows="4" required><%= blog.description %></textarea>
+            <button class="btn btn-warning">Save Edits</button>
 
             <br><br><br>
 
-            <textarea name="body" id="content" cols="100" rows="80" required><%= blog.body %></textarea>
-
-            <br><br>
-
-            <button class="btn btn-warning">Submit</button>
+            <textarea name="body" id="content" cols="100" rows="80" required><%- blog.body %></textarea>
 
             <br><br>
           </form>
         </center>
+
+        <script src="/ckeditor/ckeditor.js"></script>
+        <script>
+          CKEDITOR.replace("body");
+        </script>
     
 </body>
 </html>

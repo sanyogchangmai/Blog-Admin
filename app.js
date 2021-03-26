@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const methodOverride = require("method-override");
 const Blog = require("./models/blog");
 const ejs = require("ejs");
 
@@ -39,6 +40,19 @@ app.get("/",function(req,res){
      })
 })
 
+// ! For displaying the content for editing !
+app.get("/:id/edit",function(req,res){
+    const id = req.params.id;
+    //  Blog.findById(id)
+    Blog.findOne({_id: id})
+     .then((result) => {
+         res.render("edit",{blog: result});
+     })
+     .catch((err) => {
+         console.log(err);
+     });
+})
+
 
 // ! To save the blogs and redirect it to index and show it there !
 app.post("/",function(req,res){
@@ -63,24 +77,14 @@ app.get("/blog/:id",function(req,res){
      }); 
 })
 
-// ! For displaying the content for editing !
-app.get("/edit/:id",function(req,res){
-    const id = req.params.id;
-     Blog.findById(id)
-     .then((result) => {
-         res.render("edit",{blog: result});
-     })
-     .catch((err) => {
-         console.log(err);
-     });
-})
+
 
 // ! Saving the edits and redirecting !
 app.post("/:id",function(req,res){
     const id = req.params.id;
     Blog.findOneAndUpdate({ _id: id},req.body).then(function(){
     Blog.findOne({_id: id}).then(function(Blog){ 
-      res.redirect("/") ; 
+      res.redirect("/"); 
       });
     });
 })
@@ -101,7 +105,6 @@ app.delete("/blog/:id",function(req,res){
 app.get("/create",function(req,res){
     res.render("create");
 })
-
 
 app.listen(3000,function(){
     console.log("Server started at port 5000");

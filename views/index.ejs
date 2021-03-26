@@ -53,14 +53,10 @@
                   <img class="blog-pic" src="images/profile-card.JPG" alt="">
                 </div>
                 <div class="col-8">
-                  <h3 class="blog-post-title"><%= result.title %></h3>
+                  <br>
                   <p>Posted on : <%= result.createdAt.toLocaleDateString() %></p>
-                  <hr>
-                  <p class="blog-post-desc">
-                    <%= result.description %>
-                  </p>
                   <p class="blog-post">
-                    <%- result.sanitizedHtml %>
+                    <%- result.body.substring(0,500) + "...." %>
                     <a href="/blog/<%= result._id %>">Read more</a>
                   </p>
                 </div>
