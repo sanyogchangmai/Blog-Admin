@@ -1,15 +1,20 @@
+require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+// const fs = require("fs");
+// var multer = require('multer');
+// var upload = multer({ dest: 'uploads/' })
 const methodOverride = require("method-override");
 const Blog = require("./models/blog");
 const ejs = require("ejs");
+const { config } = require("dotenv");
 
 
 const app = express();
 
 // ! Connecting to DB !
-const URL = "mongodb+srv://vidar_29:SANYOGNOAH29@node-with-db.00ylb.mongodb.net/sanyog-blog?retryWrites=true&w=majority";
+const URL = process.env.DB_URL;
 mongoose.connect(URL,{ useNewUrlParser: true })
 .then((result) => console.log("Connected to DB"))
 .catch((err) => console.log(err))
@@ -40,19 +45,6 @@ app.get("/",function(req,res){
      })
 })
 
-// ! For displaying the content for editing !
-app.get("/:id/edit",function(req,res){
-    const id = req.params.id;
-    //  Blog.findById(id)
-    Blog.findOne({_id: id})
-     .then((result) => {
-         res.render("edit",{blog: result});
-     })
-     .catch((err) => {
-         console.log(err);
-     });
-})
-
 
 // ! To save the blogs and redirect it to index and show it there !
 app.post("/",function(req,res){
@@ -75,6 +67,18 @@ app.get("/blog/:id",function(req,res){
      .catch((err) => {
          console.log(err);
      }); 
+})
+
+// ! For displaying the content for editing !
+app.get("/:id/edit",function(req,res){
+    const id = req.params.id;
+     Blog.findById(id)
+     .then((result) => {
+         res.render("edit",{blog: result});
+     })
+     .catch((err) => {
+         console.log(err);
+     });
 })
 
 
@@ -107,5 +111,5 @@ app.get("/create",function(req,res){
 })
 
 app.listen(3000,function(){
-    console.log("Server started at port 5000");
+    console.log("Server started at port 3000");
 })
